@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Grid Cover Studio — GTA 6-style cover maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">NG</span>
+    <div>
+      <h1>Neon Grid Cover Studio</h1>
+      <p class="tagline">Turn any photo + caption into GTA 6-style cover art. Offline, in your browser.</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="sampleBtn" type="button" class="btn ghost">Try a sample photo</button>
+    <button id="exportBtn" type="button" class="btn primary">Export PNG</button>
+  </div>
+</header>
+
+<main class="studio">
+  <section class="preview-col">
+    <div class="preview-frame">
+      <canvas id="coverCanvas" width="540" height="675" aria-label="Cover preview"></canvas>
+    </div>
+    <p class="preview-note">Live preview — what you see is what the PNG looks like.</p>
+    <div class="size-row" role="group" aria-label="Export size">
+      <button type="button" class="size-btn" data-size="1080x1080">1080 × 1080</button>
+      <button type="button" class="size-btn active" data-size="1080x1350">1080 × 1350</button>
+      <button type="button" class="size-btn" data-size="1920x1080">1920 × 1080</button>
+    </div>
+  </section>
+
+  <section class="controls-col">
+    <div class="panel-card">
+      <h2>1 · Photos</h2>
+      <p class="hint">Pick a panel below, then load a photo into it. One photo can fill every panel.</p>
+      <div class="panel-picker" id="panelPicker" role="group" aria-label="Choose panel"></div>
+      <div class="field-row">
+        <label class="file-btn">Load photo into panel
+          <input id="photoInput" type="file" accept="image/*">
+        </label>
+        <button id="fillAllBtn" type="button" class="btn small">Fill all panels with this photo</button>
+      </div>
+      <label class="slider-label">Zoom <span id="zoomVal">1.0×</span>
+        <input id="zoomSlider" type="range" min="1" max="3" step="0.05" value="1">
+      </label>
+      <label class="slider-label">Move left / right <span id="panXVal">0</span>
+        <input id="panXSlider" type="range" min="-100" max="100" step="1" value="0">
+      </label>
+      <label class="slider-label">Move up / down <span id="panYVal">0</span>
+        <input id="panYSlider" type="range" min="-100" max="100" step="1" value="0">
+      </label>
+    </div>
+
+    <div class="panel-card">
+      <h2>2 · Layout</h2>
+      <div class="choice-row" id="layoutRow" role="group" aria-label="Layout">
+        <button type="button" class="choice-btn active" data-layout="six">Six-panel grid</button>
+        <button type="button" class="choice-btn" data-layout="four">Four-panel grid</button>
+        <button type="button" class="choice-btn" data-layout="nine">Nine-panel grid</button>
+        <button type="button" class="choice-btn" data-layout="solo">Full-bleed solo</button>
+      </div>
+    </div>
+
+    <div class="panel-card">
+      <h2>3 · Neon grade</h2>
+      <div class="choice-row" id="gradeRow" role="group" aria-label="Colour grade">
+        <button type="button" class="choice-btn grade-sunset active" data-grade="sunset">Sunset</button>
+        <button type="button" class="choice-btn grade-neon" data-grade="neon-night">Neon Night</button>
+        <button type="button" class="choice-btn grade-vice" data-grade="vice-pink">Vice Pink</button>
+        <button type="button" class="choice-btn grade-teal" data-grade="teal-heat">Teal Heat</button>
+        <button type="button" class="choice-btn grade-mono" data-grade="mono-neon">Mono Neon</button>
+      </div>
+      <label class="check-label"><input id="grainToggle" type="checkbox" checked> Film grain + vignette</label>
+    </div>
+
+    <div class="panel-card">
+      <h2>4 · Caption</h2>
+      <label class="field-label">Cover title
+        <input id="titleInput" type="text" value="NEON GRID" maxlength="24">
+      </label>
+      <label class="field-label">Subtitle
+        <input id="subtitleInput" type="text" value="Vice City Nights" maxlength="40">
+      </label>
+      <label class="field-label">Badge
+        <input id="badgeInput" type="text" value="EST. 2026" maxlength="16">
+      </label>
+    </div>
+
+    <p class="fineprint">Your photos never leave this machine — everything runs offline in this page.
+    Original art and lettering; no Rockstar Games logo, artwork or font.</p>
+  </section>
+</main>
+
+<script src="src/sample.js"></script>
+<script src="src/neon.js"></script>
+<script src="src/editor.js"></script>
+</body>
+</html>
